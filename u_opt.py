@@ -122,6 +122,10 @@ pretty_print_matrix(A)
 m_r = A.real
 m_i = A.imag
 A = np.concatenate((m_r, m_i), axis=1)
+dist_metrics = euclidean_distance(A)
+print("Distances for trivial cases:", dist_metrics[0])
+print("Greatest distance for trivial case:", dist_metrics[1])
+print("Least distance for trivial case:", dist_metrics[2])
 
 # Use trust region approach
 print("\nRunning trust region approach...")
@@ -137,10 +141,6 @@ print("\nApproximation matrix:")
 pretty_print_matrix(res_mat)
 
 # Print results
-dist_metrics = euclidean_distance(A)
 print("\nConvex Coefficients:", res.x)
-print("Distance from random matrix:", np.linalg.norm(res_mat_ext - A))
-print("Distances for trivial cases:", dist_metrics[0])
-print("Greatest trivial case:", dist_metrics[1])
-print("Least trivial case:", dist_metrics[2])
+print("Approximation distance from random matrix:", np.linalg.norm(res_mat_ext - A))
 # %%
